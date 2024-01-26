@@ -1,0 +1,79 @@
+services:
+  nginx:
+    build:
+      context: '.'
+      dockerfile: 'server/nginx/Dev.Dockerfile'
+    ports:
+      - '8081:80'
+    depends_on:
+      - laravel
+    volumes_from:
+      - laravel:ro
+  laravel:
+    build:
+      context: 'backend'
+      dockerfile: 'docker/Dev.Dockerfile'
+      args:
+        PUID: 1000
+        GUID: 1000
+    environment:
+      PHP_OPEN_BASEDIR: /dev/stdout:/tmp:/var/www
+      PHP_POOL_NAME: 'laravel'
+      WEBUSER_HOME: '/var/www/backend'
+      PUID: 1000
+      GUID: 1000
+      MAIN_APP: 1
+    healthcheck:
+      test: [ 'CMD', 'php-fpm-healthcheck' ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 180s
+      start_interval: 5s
+    depends_on:
+      redis:
+        condition: service_started
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./backend:/var/www/backend
+      - ./frontend:/var/www/frontend
+    expose:
+      - 9000
+  redis:
+    image: 'redis:6-alpine'
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis:/data'
+    restart: unless-stopped
+  mysql:
+    image: 'mysql:8'
+    ports:
+      - '3307:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    command:
+      - '--skip-log-bin'
+    volumes:
+      - mysql:/var/lib/mysql
+      - ./backend/docker/mysql-dumps:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+      start_interval: 2s
+  front:
+    build:
+      context: frontend
+      dockerfile: ./docker/Dev.Dockerfile
+    volumes:
+      - './frontend:/var/www/html'
+    command: /bin/sh -c "npm install && npm run serve"
+    ports:
+      - '8080:8080'
+volumes:
+  redis:
+  mysql:

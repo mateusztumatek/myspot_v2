@@ -1,0 +1,13 @@
+try_files $fastcgi_script_name =404;
+
+include config/fastcgi/fastcgi_params;
+
+fastcgi_index			index.php;
+fastcgi_buffers			8 16k;
+fastcgi_buffer_size		32k;
+
+fastcgi_read_timeout 600s;
+fastcgi_connect_timeout 600s;
+
+fastcgi_param DOCUMENT_ROOT		$realpath_root;
+fastcgi_param SCRIPT_FILENAME	$realpath_root$fastcgi_script_name;

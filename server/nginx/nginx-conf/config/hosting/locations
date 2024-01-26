@@ -1,0 +1,40 @@
+# favicon.ico
+location = /favicon.ico {
+	log_not_found off;
+	access_log off;
+}
+
+# robots.txt
+location = /robots.txt {
+	log_not_found off;
+	access_log off;
+}
+
+# phpMyAdmin
+#location /db/setup {
+#  	deny all;
+#}
+
+#location /db/libraries/ {
+#  	deny all;
+#}
+
+#location /db/setup/lib/ {
+#  	deny all;
+#}
+
+#location /db/setup/frames/ {
+#  	deny all;
+#}
+
+#location /db {
+#  location ~ \.php$ {
+#    include config/fastcgi/use;
+# }
+#    
+#  root /var/www;
+#
+#  location ~* ^/db/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+#      root /var/www;
+# }
+#}

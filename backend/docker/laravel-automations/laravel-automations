@@ -1,0 +1,30 @@
+#!/command/with-contenv bash
+
+# Exit on error
+set -ex -o pipefail
+
+echo "Syncing volume files..."
+if [ "$MAIN_APP" = 1 ] && [ -d /var/tmp-www ]; then
+    s6-setuidgid webuser rsync -r /var/tmp-www/ /var/www/backend
+fi
+rm -rf /var/tmp-www
+
+if [ "$MAIN_APP" = 1 ] && [ ! -d $WEBUSER_HOME/vendor ]; then
+    echo "Vendor not found, installing..."
+    cd $WEBUSER_HOME && s6-setuidgid webuser composer install
+else
+    echo "VENDOR FOUND"
+fi
+
+s6-setuidgid webuser php $WEBUSER_HOME/artisan config:cache
+s6-setuidgid webuser php $WEBUSER_HOME/artisan storage:link
+s6-setuidgid webuser php $WEBUSER_HOME/artisan cache:clear
+if [ "$MAIN_APP" = 1 ]; then
+    echo "RUNNING MAIN APP SCRIPTS"
+    s6-setuidgid webuser php $WEBUSER_HOME/artisan migrate --force --isolated
+    # s6-setuidgid webuser php $WEBUSER_HOME/artisan translations:find this goes to pipelines
+    # s6-setuidgid webuser php $WEBUSER_HOME/artisan my:syncTranslations this goes to pipelines
+    # s6-setuidgid webuser php $WEBUSER_HOME/artisan translate:google this goes to pipelines
+fi
+
+exit 0
