@@ -1,11 +1,17 @@
 export class RequestError implements RequestValidationError{
 
     public errors;
-    constructor(errors : any) {
+    public message;
+    constructor(errors : any, message : string) {
         this.errors = errors;
+        this.message = message;
+    }
+
+    getMessage() : string{
+        return this.message;
     }
     getErrors(key: string): string[] {
-        return [];
+        return this.errors[key] ?? [];
     }
 
     hasError(key: string): boolean {

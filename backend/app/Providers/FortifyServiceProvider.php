@@ -20,7 +20,6 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
     }
 
     /**
@@ -36,11 +35,24 @@ class FortifyServiceProvider extends ServiceProvider
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
 
-            return Limit::perMinute(5)->by($throttleKey);
+            return Limit::perMinute(10)->by($throttleKey);
         });
 
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
+
+        Fortify::loginView(function (){
+            return redirect()->to(
+                RoutingHelper::getFrontUrl(
+                    FrontRoutes::LOGIN
+                )
+            );
+        });
+
+        Fortify::verifyEmailView(function () {
+            return redirect()->to('');
+        });
+
     }
 }
