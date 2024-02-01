@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\ResetUserPassword;
+use App\Consts\OauthLoginProvider;
 use App\Http\Responses\Fortify\LoginResponse as MyLoginResponse;
 use App\Http\Responses\Fortify\LoginViewResponse as MyLoginViewResponse;
 use Illuminate\Support\ServiceProvider;
@@ -29,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
     }
 }

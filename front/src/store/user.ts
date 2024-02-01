@@ -41,6 +41,16 @@ export const useUserStore = defineStore('user', {
             await getCsrf();
             const user = await me();
             this.user = user;
+        },
+
+        /**
+         * Set the user for the function.
+         *
+         * @param {User} user - The user object to be set
+         * @return {void}
+         */
+        setUser(user: User) {
+            this.user = user
         }
     },
     getters: {

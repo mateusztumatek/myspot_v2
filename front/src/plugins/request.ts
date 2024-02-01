@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import {RequestError} from "@/plugins/requestError";
 import { useCookies } from '@vueuse/integrations/useCookies'
 import {useAlertsStore, Alert} from "@/store/alerts";
@@ -40,3 +40,7 @@ service.interceptors.response.use(
 );
 
 export default service;
+
+export function reportAxiosError(error: AxiosError){
+    console.error(error)
+}

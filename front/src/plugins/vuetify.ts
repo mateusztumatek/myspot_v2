@@ -16,6 +16,7 @@ import {VDialog} from "vuetify/components/VDialog";
 import {VSpacer} from "vuetify/components/VGrid";
 import {VFooter} from "vuetify/components/VFooter";
 import {VApp} from "vuetify/components/VApp";
+import {VRow, VCol} from "vuetify/components/VGrid";
 import "@/css/main.scss"
 import '@mdi/font/css/materialdesignicons.css'
 import {VSwitch} from "vuetify/components/VSwitch"; // Ensure you are using css-loader
@@ -48,7 +49,9 @@ const vuetify = createVuetify({
         VDialog,
         VSpacer,
         VFooter,
-        VApp
+        VApp,
+        VRow,
+        VCol
     },
     directives: {
         Ripple,

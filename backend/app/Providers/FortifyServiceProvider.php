@@ -10,6 +10,7 @@ use App\Http\Responses\Fortify\LoginResponse as MyLoginResponse;
 use App\Http\Responses\Fortify\LoginViewResponse as MyLoginViewResponse;
 use App\Http\Responses\Fortify\ResetPasswordResponse as MyResetPasswordResponse;
 use App\Http\Responses\Fortify\VerifyEmailResponse as MyVerifyEmailResponse;
+use App\Http\Responses\Fortify\RegisterResponse as MyRegisterResponse;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -17,6 +18,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LoginViewResponse;
+use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Contracts\ResetPasswordViewResponse;
 use Laravel\Fortify\Contracts\VerifyEmailResponse;
 use Laravel\Fortify\Fortify;
@@ -41,6 +43,7 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->bind(LoginViewResponse::class, MyLoginViewResponse::class);
         $this->app->bind(VerifyEmailResponse::class, MyVerifyEmailResponse::class);
         $this->app->bind(ResetPasswordViewResponse::class, MyResetPasswordResponse::class);
+        $this->app->bind(RegisterResponse::class, MyRegisterResponse::class);
 
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);

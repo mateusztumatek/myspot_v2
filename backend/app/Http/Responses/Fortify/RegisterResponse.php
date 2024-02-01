@@ -4,7 +4,7 @@ namespace App\Http\Responses\Fortify;
 
 use App\Http\Resources\User\UserResource;
 
-class LoginResponse implements \Laravel\Fortify\Contracts\LoginResponse{
+class RegisterResponse implements \Laravel\Fortify\Contracts\RegisterResponse {
 
     public function toResponse($request)
     {
