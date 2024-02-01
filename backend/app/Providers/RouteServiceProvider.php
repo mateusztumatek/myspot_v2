@@ -8,6 +8,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Mockery\Exception;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -42,7 +43,12 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         Route::bind('oauth_provider', function ($value){
-            return OauthLoginProvider::from($value);
+            try {
+                $const = OauthLoginProvider::from($value);
+            }catch (\ValueError $error){
+                abort(404);
+            };
+            return  $const;
         });
     }
 }

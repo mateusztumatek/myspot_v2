@@ -2,6 +2,8 @@ import axios, {AxiosError} from 'axios';
 import {RequestError} from "@/plugins/requestError";
 import { useCookies } from '@vueuse/integrations/useCookies'
 import {useAlertsStore, Alert} from "@/store/alerts";
+import {$t} from "@/plugins/i18n";
+import router from "@/router";
 
 const service = axios.create({
     baseURL: process.env.VUE_APP_API_URL,
@@ -33,7 +35,12 @@ service.interceptors.response.use(
         }
         if(error.response.status == 429){
             const alerts = useAlertsStore();
-            alerts.addAlert('Slow down', 'You request application too many times.', 5000, 'error');
+            alerts.addAlert('error.too_many_request_title', $t('error.too_many_request_message.'), 5000, 'error');
+        }
+        if(error.response.status == 401){
+            const alerts = useAlertsStore();
+            alerts.addAlert($t('error.authorization_required_title'), $t('error.authorization_required_message'), 5000, 'error');
+            router.push('/login');
         }
         return Promise.reject(error);
     },
