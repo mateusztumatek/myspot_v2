@@ -10,9 +10,8 @@ import {useUserStore} from "@/store/user";
 
 const routes: Array<RouteRecordRaw> = [
     {
-        path: '/',
-        name: 'home',
-        component: HomeView
+        path: '',
+        redirect: '/dashboard',
     },
     {
         path: '/dashboard',
@@ -23,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/dashboard',
                 name: 'dashboard',
                 component: () => import('@/views/Dashboard/Account-Panel.vue'),
-                meta: {middleware: [Auth, EmailVerified]}
+                meta: {middleware: [EmailVerified, Auth]}
             },
             {
                 path: '/verify-email',
@@ -41,8 +40,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
     },
     {
-        path: '/login',
-        name: 'login',
+        path: '',
+        name: 'Authentication Routes',
         component: GuestLayout,
         children: [
             {
@@ -52,9 +51,39 @@ const routes: Array<RouteRecordRaw> = [
                 meta: {
                     middleware: [Guest]
                 },
+            },
+            {
+                path: '/forget-password',
+                name: 'Forget password',
+                component: () => import('@/views/Authentication/ForgotPasswordPage.vue'),
+                meta: {
+                    middleware: [Guest]
+                },
+            },
+            {
+                path: '/reset-password',
+                name: 'Reset password',
+                component: () => import('@/views/Authentication/ResetPasswordPage.vue'),
+                meta: {
+                    middleware: [Guest]
+                },
+            },
+        ]
+    },
+    {
+        path:'/404',
+        name: 'PageNotFound',
+        component: GuestLayout,
+        children: [
+            {
+                path: '/404',
+                name: '404',
+                component: () => import('@/views/Errors/404Page.vue'),
             }
         ]
-    }
+    },
+    { path: '/:pathMatch(.*)*', redirect: '/404' },
+
 ]
 
 const router = createRouter({

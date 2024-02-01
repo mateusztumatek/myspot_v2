@@ -1,5 +1,6 @@
 import {reactive, computed, ref} from 'vue'
 import Request from "@/plugins/request";
+import {RequestError} from "@/plugins/requestError";
 
 
 export default (url: string, method: 'get' | 'post' = 'get') => {
@@ -11,16 +12,18 @@ export default (url: string, method: 'get' | 'post' = 'get') => {
         perPage: 10,
     })
 
+    const validationErrors = ref(null as RequestError | null);
     const loading = ref(false);
 
     const getters = reactive({
         isNextPage: computed(() => state.currentPage < state.totalPages),
-        isPrevPage: computed(() => state.currentPage > 1),
+        isPrevPage: computed(() => state.currentPage > 1)
     })
 
     /* Get/refresh data from api */
-    const fetchData = (params = {}) => {
+    const makeCall = (params = {}) => {
         loading.value = true;
+        validationErrors.value = null;
         return Request({
             url: url,
             method: method,
@@ -28,6 +31,10 @@ export default (url: string, method: 'get' | 'post' = 'get') => {
         })
             .then((response) => {
                 state.data = response;
+            }).catch((errors) => {
+                if(errors.validationError){
+                    validationErrors.value = errors.validationError;
+                }
             })
             .finally(() => {
                 loading.value = false;
@@ -37,7 +44,7 @@ export default (url: string, method: 'get' | 'post' = 'get') => {
     /* Change page and get data for it */
     const changePage = (page: number) => {
         state.currentPage = page
-        return fetchData()
+        return makeCall()
     }
 
     const nextPage = () => {
@@ -56,9 +63,10 @@ export default (url: string, method: 'get' | 'post' = 'get') => {
         state,
         loading,
         getters,
-        fetchData,
+        makeCall,
         changePage,
         nextPage,
         prevPage,
+        validationErrors
     }
 }

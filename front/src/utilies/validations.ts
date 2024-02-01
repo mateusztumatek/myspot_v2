@@ -1,5 +1,7 @@
+import {$t} from "@/plugins/i18n";
+
 export function required(v : any){
-    return !!v || 'This element is required';
+    return !!v || $t('validations.element_required');
 }
 
 export function email(v : any){
@@ -8,5 +10,5 @@ export function email(v : any){
     if((v.match(new RegExp("@", "g")) || []).length > 1){
         return 'E-mail must be valid';
     }
-    return v && /.+@.+\..+/.test(v) || 'E-mail must be valid';
+    return v && /.+@.+\..+/.test(v) || $t('validations.email_not_valid');
 }

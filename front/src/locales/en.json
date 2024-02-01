@@ -1,0 +1,18 @@
+{
+  "user": {
+    "sign_in" : "Sign in",
+    "user_email" : "Email",
+    "password" : "Password",
+    "forget_password" : "Forget password?",
+    "dont_have_account" : "Don't have an account?",
+    "sign_up" : "Sign up"
+  },
+  "validations": {
+    "email_not_valid": "E-mail not valid",
+    "password_not_valid": "Password not valid",
+    "element_required": "Element required"
+  },
+  "errors" : {
+    "go_home" : "Go home"
+  }
+}

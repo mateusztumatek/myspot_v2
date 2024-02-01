@@ -14,6 +14,8 @@ import {VFadeTransition} from "vuetify/components/transitions";
 import {VIcon} from "vuetify/components/VIcon";
 import {VDialog} from "vuetify/components/VDialog";
 import {VSpacer} from "vuetify/components/VGrid";
+import {VFooter} from "vuetify/components/VFooter";
+import {VApp} from "vuetify/components/VApp";
 import "@/css/main.scss"
 import '@mdi/font/css/materialdesignicons.css'
 import {VSwitch} from "vuetify/components/VSwitch"; // Ensure you are using css-loader
@@ -44,7 +46,9 @@ const vuetify = createVuetify({
         VSwitch,
         VIcon,
         VDialog,
-        VSpacer
+        VSpacer,
+        VFooter,
+        VApp
     },
     directives: {
         Ripple,

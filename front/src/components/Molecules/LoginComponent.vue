@@ -56,21 +56,21 @@ const login = async () => {
 
 </script>
 <template>
-  <div class="d-flex align-center justify-center" style="height: 100vh">
+  <div class="d-flex align-center justify-center">
     <v-sheet width="400" class="mx-auto">
       <v-form v-model="form" fast-fail @submit.prevent="login()">
         <v-text-field :error-messages="requestErrors? requestErrors.getErrors('email') : []" :rules="[required, email]"
-                      :loading="loadingStore.isLoading" v-model="user.email" label="User Email"
+                      :loading="loadingStore.isLoading" v-model="user.email" :label="$t('user.user_email')"
                       type="email"></v-text-field>
         <v-text-field :error-messages="requestErrors? requestErrors.getErrors('password') : []" :rules="[required]"
-                      :loading="loadingStore.isLoading" v-model="user.password" label="password"
+                      :loading="loadingStore.isLoading" v-model="user.password" :label="$t('user.password')"
                       type="password"></v-text-field>
-        <router-link to="forget-password" class="text-body-2 font-weight-regular">Forgot Password?</router-link>
-        <v-btn :loading="loadingStore.isLoading" type="submit" color="primary" block class="mt-2">Sign in</v-btn>
+        <router-link to="forget-password" class="text-body-2 font-weight-regular">{{ $t('user.forget_password') }}</router-link>
+        <v-btn :loading="loadingStore.isLoading" type="submit" color="primary" block class="mt-2">{{ $t('user.sign_in') }}</v-btn>
       </v-form>
       <div class="mt-2">
-        <p class="text-body-2">Don't have an account?
-          <router-link to="signup">Sign Up</router-link>
+        <p class="text-body-2">{{$t('user.dont_have_account')}}
+          <router-link to="signup">{{$t('user.sign_up')}}</router-link>
         </p>
       </div>
     </v-sheet>

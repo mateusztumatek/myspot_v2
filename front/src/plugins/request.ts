@@ -13,6 +13,7 @@ const service = axios.create({
 
 service.interceptors.request.use(
     config => {
+        config.headers['Accept-Language'] = localStorage.getItem('locale');
         const cookies = useCookies();
         config.headers['X-XSRF-TOKEN'] = cookies.get('XSRF-TOKEN');
         return config;
