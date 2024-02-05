@@ -11,4 +11,7 @@ export default {
         ),
         vuetify(),
     ],
+    server: {
+        host: true,
+    },
 }

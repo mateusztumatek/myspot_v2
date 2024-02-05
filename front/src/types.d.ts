@@ -5,8 +5,8 @@ import {Ref} from "vue";
 declare global {
     type User = {
         id : number | null
-        name: String,
-        email: String,
+        name: string,
+        email: string,
         email_verified_at: string | null
     }
 

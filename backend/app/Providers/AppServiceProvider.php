@@ -6,6 +6,7 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Consts\OauthLoginProvider;
 use App\Http\Responses\Fortify\LoginResponse as MyLoginResponse;
 use App\Http\Responses\Fortify\LoginViewResponse as MyLoginViewResponse;
+use App\NotificationChannel\NotificationChannelInterface;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LoginViewResponse;
@@ -22,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->registerNotificationChannelFactory();
     }
 
     /**
@@ -30,6 +31,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+    }
 
+    public function registerNotificationChannelFactory(){
+        /**
+         * @param array $parameters {type: string, meta: array}
+         */
+        $this->app->bind(NotificationChannelInterface::class, function ($app, $parameters){
+            return app()->makeWith(
+                config('notification-channels.available_channels.'.$parameters['type']),
+                ['data' => $parameters['meta']]
+            );
+        });
     }
 }

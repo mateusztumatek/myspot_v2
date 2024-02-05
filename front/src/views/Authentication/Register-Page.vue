@@ -8,6 +8,7 @@ import Request, {reportAxiosError} from "@/plugins/request";
 import {AxiosError} from "axios";
 import {useRouter} from "vue-router";
 import LoginAsComponent from "@/components/Molecules/LoginAsComponent.vue";
+import {i18n} from "@/plugins/i18n";
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -22,7 +23,13 @@ const user = ref({
 });
 const register = async () => {
   try {
-    await execute({data: user.value})
+    const payload = {
+      data: {
+        ...user.value,
+        locale: i18n.global.locale.value
+      }
+    }
+    await execute(payload)
     if(isFinished.value){
       userStore.setUser(response.value);
       router.push('/dashboard');

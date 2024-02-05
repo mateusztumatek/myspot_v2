@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Consts\FrontRoutes;
 use App\Consts\OauthLoginProvider;
+use App\Consts\UserSource;
 use App\Helpers\RoutingHelper;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -40,8 +41,7 @@ class OauthLoginController extends Controller
                              OauthLoginProvider $oauthLoginProvider,
                              StatefulGuard $guard
     ){
-
-        $guard->login($this->getUserFromRequest(Socialite::driver($oauthLoginProvider->value)->user()));
+        $guard->login($this->getUserFromRequest(Socialite::driver($oauthLoginProvider->value)->user(), $oauthLoginProvider));
         return redirect()->to(RoutingHelper::getFrontUrl(FrontRoutes::DASHBOARD, [], true));
     }
 
@@ -50,10 +50,15 @@ class OauthLoginController extends Controller
      * @param SocialiteUser $socialiteUser
      * @return User
      */
-    private function getUserFromRequest(SocialiteUser $socialiteUser) : User{
+    private function getUserFromRequest(SocialiteUser $socialiteUser, OauthLoginProvider $oauthLoginProvider) : User{
         if($user = User::whereEmail($socialiteUser->getEmail())->first()){
             return $user;
         }
+        $source = match ($oauthLoginProvider->value) {
+            'google' => UserSource::GOOGLE,
+            'facebook' => UserSource::FACEBOOK,
+            default => UserSource::DEFAULT
+        };
         $password = Str::random(20);
         $user = $this->createsNewUsers->create(
             [
@@ -61,8 +66,11 @@ class OauthLoginController extends Controller
                 'email' => $socialiteUser->getEmail(),
                 'password' => $password,
                 'password_confirmation' => $password,
+                'avatar' => $socialiteUser->getAvatar(),
+                'source' => $source->value
             ]
         );
+
         $user->markEmailAsVerified();
         event(new Registered($user));
         return $user;

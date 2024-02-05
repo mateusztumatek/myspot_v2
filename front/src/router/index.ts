@@ -7,6 +7,8 @@ import EmailVerified from '@/router/middlewares/emailVerified'
 import AuthLayout from "@/views/Layouts/Auth-Layout.vue";
 import VerifyEmailPage from "@/views/Authentication/VerifyEmailPage.vue";
 import {useUserStore} from "@/store/user";
+import {useCookies} from "@vueuse/integrations/useCookies";
+import {getCsrf} from "@/api/user";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -135,6 +137,14 @@ router.beforeEach(async (to, from, next) => {
     }
     return next();
 })
+
+router.beforeEach(async (to, from, next) => {
+    const cookies = useCookies();
+    if(!cookies.get('XSRF-TOKEN')){
+        await getCsrf();
+    }
+    return next();
+});
 
 
 export default router

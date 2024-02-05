@@ -1,0 +1,7 @@
+{
+  "name": "MySpot",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}

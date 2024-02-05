@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Consts\Locale;
 
 class LocaleMiddleware
 {
@@ -15,7 +16,7 @@ class LocaleMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if($lang = $request->header('Accept-Language')){
+        if(($lang = $request->header('Accept-Language')) && Locale::isValid($lang)) {
             app()->setLocale($lang);
         }
         return $next($request);

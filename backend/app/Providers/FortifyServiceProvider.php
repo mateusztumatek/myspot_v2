@@ -38,7 +38,6 @@ class FortifyServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-
         $this->app->bind(LoginResponse::class, MyLoginResponse::class);
         $this->app->bind(LoginViewResponse::class, MyLoginViewResponse::class);
         $this->app->bind(VerifyEmailResponse::class, MyVerifyEmailResponse::class);

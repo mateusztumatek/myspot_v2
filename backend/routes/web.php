@@ -20,3 +20,8 @@ Route::get('/', function () {
 Route::middleware('auth:sanctum')->get('/user', function (\Illuminate\Http\Request $request) {
     return $request->user();
 });
+
+Route::get('/test', function (){
+    $user = \App\Models\User::first();
+    $user->notify(new \App\Notifications\TestNotification());
+});

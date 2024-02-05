@@ -5,6 +5,7 @@ import router from './router'
 import vuetify from './plugins/vuetify';
 import { createPinia } from 'pinia'
 import {i18n} from "@/plugins/i18n";
+require('./plugins/firebase');
 
 
 const pinia = createPinia()
