@@ -7,7 +7,7 @@ import {useUserStore} from "@/store/user";
 import Request from "@/plugins/request";
 import Divider from "@/components/Divider.vue";
 import axios, {AxiosError} from "axios";
-import router from "@/router";
+import {useIonRouter} from "@ionic/vue";
 
 const userStore = useUserStore();
 const externalProviders = [
@@ -19,6 +19,7 @@ const externalProviders = [
   }
 ]
 
+const router = useIonRouter();
 let userLoginData = reactive({'email' : '', password: '', loading: false});
 const validationError = ref(null);
 const login = async () => {
@@ -47,7 +48,7 @@ const login = async () => {
             label-placement="floating"
             type="email" :label="$t('Email')"
             v-model="userLoginData.email"
-            :placeholder="$t('john.dee@example.com')"></ion-input>
+            placeholder="john.dee@example.com"></ion-input>
       </ion-item>
       <ion-item>
         <ion-icon aria-hidden="true" :icon="lockClosed" slot="start"></ion-icon>

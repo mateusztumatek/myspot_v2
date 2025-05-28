@@ -4,6 +4,5 @@
 <template>
   <div>
     <v-btn @click="retriveAndSetUserDevice()">Pobierz token klienta</v-btn>
-    siema
   </div>
 </template>

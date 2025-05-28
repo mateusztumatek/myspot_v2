@@ -14,6 +14,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $cart = [
+        [
+            "name" => "Red Shoes",
+            "price" => 101.01,
+            "quantity" => 5,
+            "discount" => 55
+        ],
+        [
+            "name" => "Blue bag",
+            "price" => 262.21,
+            "quantity" => 1,
+            "discount" => 40
+        ],
+        [
+            "name" => "Green hat",
+            "price" => 322.22,
+            "quantity" => 7,
+            "discount" => 0
+        ],
+        [
+            "name" => "Gray socks",
+            "price" => 425.03,
+            "quantity" => 2,
+            "discount" => 62
+        ]
+    ];
+
     return view('welcome');
 });
 

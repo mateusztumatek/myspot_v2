@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import {getCsrf, login, logout, me} from "@/api/user";
 import {useStorage} from "@vueuse/core";
-import router from '@/router';
 import {Axios, AxiosError} from "axios";
 
 const defaultNotAuthenticatedUser = {
@@ -33,7 +32,6 @@ export const useUserStore = defineStore('user', {
         async logout(): Promise<boolean> {
             await logout();
             this.user = defaultNotAuthenticatedUser;
-            router.push('/login');
             return true;
         },
 

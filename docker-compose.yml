@@ -67,11 +67,11 @@ services:
       start_interval: 2s
   front:
     build:
-      context: front
+      context: front2
       dockerfile: ./docker/Dev.Dockerfile
     volumes:
-      - './front:/var/www/html'
-    command: /bin/sh -c "npm install && npm run serve"
+      - './front2:/var/www/html'
+    command: /bin/sh -c "npm install && ionic serve --port=8080 --external --no-open"
     ports:
       - '8080:8080'
 volumes:

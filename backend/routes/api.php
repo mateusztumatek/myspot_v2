@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')
     ->prefix('user')
     ->group(function (){
         Route::apiResource('notification-channels', \App\Http\Controllers\UserNotificationChannelController::class);
+        Route::put('update', [\App\Http\Controllers\UserController::class, 'update']);
     });

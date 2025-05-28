@@ -9,6 +9,8 @@
   import {IonLoading} from "@ionic/vue";
   import {defineEmits, ref} from 'vue';
   import {useUserStore} from "@/store/user";
+  import {useIonRouter} from "@ionic/vue";
+  const router = useIonRouter();
 
   const userStore = useUserStore();
   const emit = defineEmits(['afterLogout'])
@@ -17,6 +19,7 @@
     loading.value = true;
     await userStore.logout();
     loading.value = false;
-    emit('afterLogout')
+    emit('afterLogout');
+    router.push('/login');
   }
 </script>

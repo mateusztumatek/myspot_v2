@@ -27,13 +27,17 @@ import { createPinia } from 'pinia'
 import {i18n} from "@/plugins/i18n";
 
 import "@/css/styles.scss"
+import {createAnimation} from "@ionic/vue";
 //require('./plugins/firebase');
+
 
 
 const pinia = createPinia()
 
 const app = createApp(App)
-  .use(IonicVue)
+  .use(IonicVue, {
+    animated: true,
+  })
   .use(router)
   .use(pinia)
   .use(i18n);
