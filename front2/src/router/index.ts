@@ -43,6 +43,12 @@ const routes: Array<RouteRecordRaw> = [
           name: 'account',
           component: () => import('@/views/Dashboard/UserAccount.vue'),
           meta:{middleware: [Auth]}
+        },
+        {
+          path:'create-event',
+          name: 'create-event',
+          component: () => import('@/views/Dashboard/Events/Index.vue'),
+          meta:{middleware: [Auth]}
         }
       ]
   },

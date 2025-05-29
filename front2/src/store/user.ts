@@ -2,12 +2,14 @@ import { defineStore } from 'pinia'
 import {getCsrf, login, logout, me} from "@/api/user";
 import {useStorage} from "@vueuse/core";
 import {Axios, AxiosError} from "axios";
+import {Permission} from "@/types/permissions";
 
 const defaultNotAuthenticatedUser = {
     email: '',
     name: '',
     id: null,
-    email_verified_at : null
+    email_verified_at : null,
+    permissions: [] as Permission[],
 }
 export const useUserStore = defineStore('user', {
     state: ()  => ({
@@ -49,7 +51,7 @@ export const useUserStore = defineStore('user', {
          */
         setUser(user: User) {
             this.user = user
-        }
+        },
     },
     getters: {
         isLoggedIn : (state) => {
@@ -57,6 +59,9 @@ export const useUserStore = defineStore('user', {
         },
         hasVerifiedEmail : (state) => {
             return state.user.email_verified_at !== null
+        },
+        hasPermission(permission: Permission): boolean {
+            return this.user.permissions.includes(permission);
         }
     },
 })

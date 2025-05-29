@@ -7,6 +7,10 @@
           <ion-icon aria-hidden="true" :icon="homeOutline" />
           <ion-label>{{ $t('Home') }}</ion-label>
         </ion-tab-button>
+        <ion-tab-button tab="createEvent" href="/dashboard/create-event">
+          <ion-icon aria-hidden="true" :icon="addCircleOutline" />
+          <ion-label>{{ $t('Create Event') }}</ion-label>
+        </ion-tab-button>
         <ion-tab-button tab="account" href="/dashboard/account">
           <ion-icon aria-hidden="true" :icon="personOutline" />
           <ion-label>{{$t('User account')}}</ion-label>
@@ -18,7 +22,7 @@
 
 <script setup lang="ts">
 import {IonApp, IonIcon, IonLabel, IonPage, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs} from '@ionic/vue';
-import {ellipse, square, triangle, personOutline, homeOutline} from "ionicons/icons";
+import {ellipse, square, triangle, personOutline, homeOutline, addCircleOutline} from "ionicons/icons";
 import {fadeIn} from "@/utilies/animations";
 import {ref, onMounted} from 'vue';
 import {useRoute} from "vue-router";

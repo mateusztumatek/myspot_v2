@@ -33,6 +33,13 @@ import EditableItem from "@/components/List/EditableItem.vue";
 import {useFileSystemAccess} from "@vueuse/core";
 import Request from "@/plugins/request";
 import {useAxios} from "@vueuse/integrations/useAxios";
+import {useUserStore} from "@/store/user";
+import {onMounted} from "vue";
+
+onMounted(() => {
+  const userStore = useUserStore();
+  userStore.refreshUser();
+})
 
 const {execute} = useAxios('api/user/update',{}, Request, {immediate: false});
 const {open, file} = useFileSystemAccess({

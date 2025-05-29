@@ -2,10 +2,14 @@
 
 namespace App\Http\Resources\User;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @mixin User
+ */
 class UserResource extends JsonResource
 {
     public static $wrap = null;
@@ -22,7 +26,8 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email_verified_at' => $this->email_verified_at,
             'locale' => $this->locale,
-            'avatar' => $this->getFirstMediaUrl('avatar')
+            'avatar' => $this->getFirstMediaUrl('avatar'),
+            'permissions' => $this->getAllPermissions()->pluck('name')
         ];
     }
 }

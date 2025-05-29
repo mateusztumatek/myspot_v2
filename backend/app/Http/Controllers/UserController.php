@@ -17,6 +17,7 @@ class UserController extends Controller
 
     public function update(Request $request, Authenticatable $authenticatable)
     {
+        // @todo: FINISH
         $file = $request->file('avatar')->store($authenticatable->getAuthIdentifier());
     }
 }

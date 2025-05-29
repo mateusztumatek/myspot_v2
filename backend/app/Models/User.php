@@ -15,6 +15,7 @@ use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail, HasLocalePreference, HasMedia
 {
@@ -22,7 +23,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasLocalePreferen
         HasFactory,
         Notifiable,
         InteractsWithMedia,
-        HasNotificationChannels;
+        HasNotificationChannels,
+        HasRoles
+    ;
 
     /**
      * The attributes that are mass assignable.
