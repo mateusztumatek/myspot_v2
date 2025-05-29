@@ -13,7 +13,6 @@ import AuthLayout from "@/views/Layouts/Auth-Layout.vue";
 const routes: Array<RouteRecordRaw> = [
   {
       path : "/login",
-      name : "login",
       component: GuestLayout,
       children : [
         {

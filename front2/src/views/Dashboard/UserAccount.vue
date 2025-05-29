@@ -2,6 +2,9 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button text="Back"></ion-back-button>
+        </ion-buttons>
         <ion-title>{{$t('Your account')}}</ion-title>
       </ion-toolbar>
     </ion-header>
