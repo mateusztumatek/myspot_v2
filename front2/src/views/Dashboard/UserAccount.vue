@@ -45,6 +45,7 @@ const {open, file} = useFileSystemAccess({
 
 const updateUserAvatar = async() => {
   const image = await open();
+
   await execute({method: 'PUT', data:{avatar: file.value}});
 
 }
