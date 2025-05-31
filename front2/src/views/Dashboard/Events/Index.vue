@@ -8,11 +8,11 @@
     <ion-content :fullscreen="true">
       <ion-list>
         <ion-item>
-          <ion-input v-model="form.name" required label="Event name" />
+          <ion-input label-placement="floating" v-model="form.name" required :label="$t('Event name')" />
         </ion-item>
 
         <ion-item>
-          <ion-select v-model="form.category" interface="popover" label="Category">
+          <ion-select label-placement="floating" v-model="form.category" interface="alert" :label="$t('Category')">
             <ion-select-option value="music">Music</ion-select-option>
             <ion-select-option value="sports">Sports</ion-select-option>
             <ion-select-option value="conference">Conference</ion-select-option>
@@ -23,9 +23,13 @@
         <ion-item>
           <ion-label>Visibility</ion-label>
         </ion-item>
-        <ion-radio-group helperText="Test" v-model="form.visibility">
-          <ion-radio value="public">Public</ion-radio>
-          <ion-radio value="private">Private</ion-radio>
+        <ion-radio-group v-model="form.visibility">
+          <ion-item>
+            <ion-radio value="public">Public</ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-radio value="private">Private</ion-radio>
+          </ion-item>
         </ion-radio-group>
 
         <ion-item>
@@ -48,7 +52,6 @@
 <script lang="ts" setup>
 
 import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRadioGroup, IonRadio} from "@ionic/vue";
-import ExploreContainer from "@/components/ExploreContainer.vue";
 import {ref} from "vue";
 
 const form = ref<{
