@@ -5,6 +5,9 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Consts\Locale;
 use App\Traits\HasNotificationChannels;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,7 +20,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail, HasLocalePreference, HasMedia
+class User extends Authenticatable implements MustVerifyEmail, HasLocalePreference, HasMedia, FilamentUser, HasAvatar
 {
     use HasApiTokens,
         HasFactory,
@@ -92,5 +95,16 @@ class User extends Authenticatable implements MustVerifyEmail, HasLocalePreferen
         return $this->notificationChannels()->where('channel', 'push')->get()->map(function (NotificationChannel $channel) {
             return $channel->notificationChannel()->getToken();
         })->toArray();
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        // Get avatar from media library
+        return $this->getFirstMediaUrl('avatar', 'avatar');
     }
 }
