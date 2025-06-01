@@ -1,0 +1,113 @@
+[
+    {
+        "name": "Sports & Fitness",
+        "children": [
+            { "name": "Football Games" },
+            { "name": "Basketball Games" },
+            { "name": "Volleyball Matches" },
+            { "name": "Tennis Tournaments" },
+            { "name": "Martial Arts Events" },
+            { "name": "Yoga Classes" },
+            { "name": "Fitness Bootcamps" },
+            { "name": "Running Events / Marathons" },
+            { "name": "Esports Tournaments" }
+        ]
+    },
+    {
+        "name": "Arts & Culture",
+        "children": [
+            { "name": "Theater Performances" },
+            { "name": "Dance Shows" },
+            { "name": "Art Exhibitions" },
+            { "name": "Museum Events" },
+            { "name": "Film Screenings" },
+            { "name": "Cultural Festivals" }
+        ]
+    },
+    {
+        "name": "Workshops & Classes",
+        "children": [
+            { "name": "Jewelry Making Workshops" },
+            { "name": "Pottery & Ceramics" },
+            { "name": "Painting & Drawing Classes" },
+            { "name": "Photography Workshops" },
+            { "name": "Cooking & Baking Classes" },
+            { "name": "DIY & Craft Workshops" },
+            { "name": "Music Lessons" },
+            { "name": "Language Classes" }
+        ]
+    },
+    {
+        "name": "Music & Entertainment",
+        "children": [
+            { "name": "Concerts & Gigs" },
+            { "name": "DJ Events" },
+            { "name": "Karaoke Nights" },
+            { "name": "Open Mic Nights" },
+            { "name": "Comedy Shows" },
+            { "name": "Club Nights" }
+        ]
+    },
+    {
+        "name": "Wellness & Personal Growth",
+        "children": [
+            { "name": "Meditation Sessions" },
+            { "name": "Wellness Retreats" },
+            { "name": "Life Coaching Seminars" },
+            { "name": "Health & Nutrition Talks" },
+            { "name": "Sound Bath / Healing Events" }
+        ]
+    },
+    {
+        "name": "Business & Networking",
+        "children": [
+            { "name": "Conferences" },
+            { "name": "Networking Events" },
+            { "name": "Industry Meetups" },
+            { "name": "Trade Shows" },
+            { "name": "Product Launches" },
+            { "name": "Workshops (Marketing, Sales, Leadership, etc.)" }
+        ]
+    },
+    {
+        "name": "Social & Community",
+        "children": [
+            { "name": "Parties & Celebrations" },
+            { "name": "Meetups (Book Clubs, Language Exchange, etc.)" },
+            { "name": "Charity Events" },
+            { "name": "Religious Events" },
+            { "name": "Community Fairs" },
+            { "name": "Farmers Markets" }
+        ]
+    },
+    {
+        "name": "Family & Kids",
+        "children": [
+            { "name": "Kids’ Activities" },
+            { "name": "Family Shows" },
+            { "name": "Parent-Child Workshops" },
+            { "name": "Birthday Parties" },
+            { "name": "Educational Events for Kids" }
+        ]
+    },
+    {
+        "name": "Food & Drink",
+        "children": [
+            { "name": "Wine Tastings" },
+            { "name": "Food Festivals" },
+            { "name": "Brewery/Distillery Tours" },
+            { "name": "Cooking Demonstrations" },
+            { "name": "Pop-up Restaurants" }
+        ]
+    },
+    {
+        "name": "Outdoor & Adventure",
+        "children": [
+            { "name": "Hiking Trips" },
+            { "name": "Camping Weekends" },
+            { "name": "Nature Walks" },
+            { "name": "Adventure Sports (Climbing, Kayaking, etc.)" },
+            { "name": "Outdoor Yoga" }
+        ]
+    }
+]
