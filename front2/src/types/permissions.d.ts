@@ -1,1 +1,0 @@
-export type Permission = 'create_event' | 'edit_event' | 'delete_event' | 'view_event' | 'create_user' | 'edit_user' | 'delete_user' | 'view_user';
