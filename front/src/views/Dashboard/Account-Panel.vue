@@ -1,8 +1,10 @@
 <script setup lang="ts">
-  import {retriveAndSetUserDevice} from "@/utilies/authrizeUserForCloudMessaging";
+  import {retrieveAndSetUserDevice} from "@/utilies/authrizeUserForCloudMessaging";
 </script>
 <template>
   <div>
-    <v-btn @click="retriveAndSetUserDevice()">Pobierz token klienta</v-btn>
+    <v-card>
+      {{$t('account.list_temporary_unavailable')}}
+    </v-card>
   </div>
 </template>

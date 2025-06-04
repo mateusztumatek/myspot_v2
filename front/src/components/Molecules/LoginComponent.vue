@@ -55,7 +55,7 @@ const login = async () => {
 </script>
 <template>
   <div class="d-flex align-center justify-center">
-    <v-sheet width="400" class="mx-auto">
+    <v-sheet color="transparent" width="90%" class="mx-auto">
       <v-form v-model="form" fast-fail @submit.prevent="login()">
         <v-text-field :error-messages="requestErrors? requestErrors.getErrors('email') : []" :rules="[required, email]"
                       v-model="user.email" :label="$t('user.user_email')"

@@ -6,6 +6,7 @@
   import {computed} from "vue";
   import {useDark} from "@vueuse/core";
   import FooterComponent from "@/components/Molecules/FooterComponent.vue";
+  import AppHeader from "@/views/Layouts/AppHeader.vue";
 
   let isDark = useDark();
   let logo = computed(() => {
@@ -13,9 +14,8 @@
   })
 </script>
 <template>
-    <v-app class="w-100 d-flex flex-column align-center">
-        <v-img width="200px" :src="logo"></v-img>
-        <LogoutComponent></LogoutComponent>
+    <v-app>
+        <AppHeader />
         <router-view></router-view>
         <footer-component></footer-component>
     </v-app>

@@ -14,5 +14,8 @@
   },
   "errors" : {
     "go_home" : "Wróc do strony głównej"
+  },
+  "account" : {
+    "list_temporary_unavailable" : "Lista jest tymczasowo niedostępna"
   }
 }

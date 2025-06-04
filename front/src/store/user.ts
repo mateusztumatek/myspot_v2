@@ -3,12 +3,14 @@ import {getCsrf, login, logout, me} from "@/api/user";
 import {useStorage} from "@vueuse/core";
 import router from '@/router';
 import {Axios, AxiosError} from "axios";
+import {Permission} from "@/types/permission";
 
 const defaultNotAuthenticatedUser = {
     email: '',
     name: '',
     id: null,
-    email_verified_at : null
+    email_verified_at : null,
+    permissions: [] as Permission[],
 }
 export const useUserStore = defineStore('user', {
     state: ()  => ({

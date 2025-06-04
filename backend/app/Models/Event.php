@@ -159,4 +159,9 @@ class Event extends Model implements HasMedia
     {
         return 'location';
     }
+
+    public function getRouteKeyName() : string
+    {
+        return 'uuid';
+    }
 }

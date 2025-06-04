@@ -22,7 +22,6 @@
       <v-col
           v-for="login in ExternalLogins"
           :key="login.name"
-          cols="12"
           sm="4"
       >
         <ExternalLoginButton :name="login.name" :icon="login.icon" :url="login.url"></ExternalLoginButton>

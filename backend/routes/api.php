@@ -22,3 +22,6 @@ Route::middleware('auth:sanctum')
         Route::apiResource('notification-channels', \App\Http\Controllers\UserNotificationChannelController::class);
         Route::post('update', [\App\Http\Controllers\UserController::class, 'update']);
     });
+
+Route::apiResource('events', \App\Http\Controllers\EventController::class)
+    ->only(['show']);

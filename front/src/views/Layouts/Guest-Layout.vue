@@ -12,8 +12,10 @@
   })
 </script>
 <template>
-    <v-app class="w-100 d-flex flex-column align-center">
-        <v-img width="200px" :src="logo"></v-img>
+    <v-app class="w-100">
+        <div class="d-flex justify-center align-center flex-column align-center">
+          <v-img width="100px" :src="logo"></v-img>
+        </div>
         <router-view></router-view>
         <footer-component></footer-component>
     </v-app>

@@ -2,7 +2,9 @@ import { createApp } from 'vue'
 import { createVuetify } from 'vuetify'
 import { VCard, VCardActions, VCardTitle, VCardText, VCardItem, VCardSubtitle } from 'vuetify/components/VCard'
 import { VRating } from 'vuetify/components/VRating'
+import {VSkeletonLoader} from "vuetify/components";
 import { VToolbar } from 'vuetify/components/VToolbar'
+import {VFab} from "vuetify/components";
 import { VBtn } from "vuetify/components/VBtn";
 import { Ripple } from 'vuetify/directives'
 import {VImg} from "vuetify/components/VImg";
@@ -20,8 +22,10 @@ import {VRow, VCol} from "vuetify/components/VGrid";
 import "@/css/main.scss"
 import '@mdi/font/css/materialdesignicons.css'
 import {VSwitch} from "vuetify/components/VSwitch"; // Ensure you are using css-loader
-
-
+import {VContainer} from "vuetify/components";
+import {VDivider} from "vuetify/components";
+import {VBadge} from "vuetify/components";
+import {VChip} from "vuetify/components";
 
 
 const vuetify = createVuetify({
@@ -51,7 +55,13 @@ const vuetify = createVuetify({
         VFooter,
         VApp,
         VRow,
-        VCol
+        VCol,
+        VSkeletonLoader,
+        VFab,
+        VContainer,
+        VDivider,
+        VBadge,
+        VChip
     },
     directives: {
         Ripple,

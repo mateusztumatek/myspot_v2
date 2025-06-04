@@ -34,6 +34,17 @@ const routes: Array<RouteRecordRaw> = [
         ]
     },
     {
+        path: '/events/',
+        component: AuthLayout,
+        children: [
+            {
+                path: ':uuid',
+                name: 'event-show',
+                component: () => import('@/views/Events/Event-Show.vue'),
+            }
+        ]
+    },
+    {
         path: '/about',
         name: 'about',
         // route level code-splitting
@@ -108,7 +119,12 @@ function nextFactory(context : { from : any, next : any, router : any, to : any 
 
     return (parameters: [{ from : any, next: any, router: any, to: any }]) => {
         // Run the default Vue Router `next()` callback first.
-        context.next(...parameters);
+        if(parameters !== undefined){
+            context.next(...parameters);
+        }else{
+            context.next();
+        }
+
         // Then run the subsequent Middleware with a new
         // `nextMiddleware()` callback.
         const nextMiddleware = nextFactory(context, middleware, index + 1);
