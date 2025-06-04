@@ -18,6 +18,23 @@ export interface EventInterface {
     payment_details: EventPaymentDetailsInterface,
     created_at: string,
     updated_at: string,
+    location : LocationInterface,
+}
+
+export interface EventAttendee {
+    id: number;
+    created_at: string;
+    updated_at: string;
+    user_id?: number;
+    attendee_name?: string;
+    attendee_email?: string
+    attendee_phone?: string
+    attendee_avatar?: string
+}
+
+export interface LocationInterface {
+    latitude: ?number;
+    longitude: ?number;
 }
 
 export type EventVisibility = 'public' | 'private';

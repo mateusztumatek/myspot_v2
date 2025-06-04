@@ -29,6 +29,7 @@ service.interceptors.response.use(
         return response.data;
     },
     error => {
+        console.log('ON REJECT', error);
         if(error.response.status == 422){
             error.validationError = new RequestError(error.response.data.errors, error.response.data.message);
             return Promise.reject(error);

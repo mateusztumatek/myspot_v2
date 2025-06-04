@@ -24,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->registerNotificationChannelFactory();
+
+        $this->app->register(AppEventServiceProvider::class);
     }
 
     /**

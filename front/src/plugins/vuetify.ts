@@ -26,6 +26,9 @@ import {VContainer} from "vuetify/components";
 import {VDivider} from "vuetify/components";
 import {VBadge} from "vuetify/components";
 import {VChip} from "vuetify/components";
+import {VProgressCircular} from "vuetify/components";
+import {VAvatar} from "vuetify/components";
+import {VBottomNavigation} from "vuetify/components";
 
 
 const vuetify = createVuetify({
@@ -61,7 +64,10 @@ const vuetify = createVuetify({
         VContainer,
         VDivider,
         VBadge,
-        VChip
+        VChip,
+        VProgressCircular,
+        VAvatar,
+        VBottomNavigation
     },
     directives: {
         Ripple,

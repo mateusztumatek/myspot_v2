@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\EventMaxAttendeesExceededException;
 use App\Models\Traits\ModelHasCreator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -163,5 +164,13 @@ class Event extends Model implements HasMedia
     public function getRouteKeyName() : string
     {
         return 'uuid';
+    }
+
+    public function validateAttendeesCount() : void
+    {
+        if(!$this->max_attendees) return;
+        if($this->attendees()->count() > $this->max_attendees){
+            throw new EventMaxAttendeesExceededException($this);
+        }
     }
 }

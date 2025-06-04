@@ -25,3 +25,15 @@ Route::middleware('auth:sanctum')
 
 Route::apiResource('events', \App\Http\Controllers\EventController::class)
     ->only(['show']);
+
+Route::middleware('auth:sanctum')
+    ->group(function (){
+        Route::post('events/{event}/sign-up', [\App\Http\Controllers\EventAttendeeController::class, 'subscribe'])
+            ->name('events.subscribe');
+    });
+
+Route::apiResource('events/{event}/attendees', \App\Http\Controllers\EventAttendeeController::class)
+    ->only(['index', 'store'])
+    ->scoped([
+        'event' => 'uuid'
+    ]);

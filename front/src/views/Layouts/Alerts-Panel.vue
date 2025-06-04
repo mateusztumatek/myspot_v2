@@ -8,7 +8,7 @@
 <template>
   <div class="alerts-panel">
     <v-fade-transition group>
-      <div :key="index" v-for="(alert, index) in alerts.activeAlerts" class="w-50">
+      <v-container :key="index" v-for="(alert, index) in alerts.activeAlerts" class="w-100 w-lg-50">
         <v-alert
             max-width="100%"
             :type="alert.type"
@@ -17,7 +17,7 @@
             :text="alert.message"
             @click:close="alert.close()"
         ></v-alert>
-      </div>
+      </v-container>
     </v-fade-transition>
   </div>
 </template>
@@ -31,5 +31,6 @@
     width: 100%;
     position: fixed;
     bottom: 10px;
+    z-index: 100;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <div class="my-8">
       <div class="text-body-2 mb-2 text-primary">Event Title</div>
       <div class="text-h4 font-weight-bold">{{event.name}}</div>
@@ -31,7 +31,7 @@
         <div class="text-grey rich-text-output rich-text-content" v-html="event.description"></div>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 <script lang="ts" setup>
 import {defineProps} from 'vue'

@@ -20,6 +20,10 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * @property string $name
+ * @property string $email
+ */
 class User extends Authenticatable implements MustVerifyEmail, HasLocalePreference, HasMedia, FilamentUser, HasAvatar
 {
     use HasApiTokens,
